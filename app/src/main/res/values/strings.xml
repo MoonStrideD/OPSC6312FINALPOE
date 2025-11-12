@@ -1,3 +1,49 @@
 <resources>
-    <string name="app_name">OPSC6312FINALPOE</string>
+    <string name="app_name">BreezyNest</string>
+
+    <!-- Authentication -->
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="tenant">Tenant</string>
+    <string name="landlord">Landlord</string>
+
+    <!-- Navigation -->
+    <string name="dashboard">Dashboard</string>
+    <string name="properties">Properties</string>
+    <string name="favorites">Favorites</string>
+    <string name="profile">Profile</string>
+
+    <!-- Property -->
+    <string name="search_properties">Search properties…</string>
+    <string name="no_properties_found">No properties found</string>
+    <string name="bedrooms">%d Bedrooms</string>
+    <string name="price_per_month">R %.0f/month</string>
+
+    <!-- Profile -->
+    <string name="edit_profile">Edit Profile</string>
+    <string name="change_language">Change Language</string>
+    <string name="notification_settings">Notification Settings</string>
+    <string name="help_support">Help &amp; Support</string>
+    <string name="logout">Logout</string>
+
+    <string name="rent_reminder">Rent Reminder</string>
+    <string name="rent_due_soon">Rent for %1$s is due in %2$d days</string>
+    <string name="new_property_available">New Property Available</string>
+    <string name="new_property_in_location">New property available in %s</string>
+
+    <string name="settings">Settings</string>
+    <string name="appearance">Appearance</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="language">Language</string>
+    <string name="notifications">Notifications</string>
+    <string name="push_notifications">Push Notifications</string>
+    <string name="offline_mode">Offline Mode</string>
+    <string name="enable_offline_access">Enable Offline Access</string>
+    <string name="save_offline_desc">Save properties for offline viewing</string>
 </resources>

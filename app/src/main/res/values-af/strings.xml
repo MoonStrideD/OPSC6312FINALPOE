@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BreezyNest</string>
+
+    <!-- Authentication -->
+    <string name="login">Teken In</string>
+    <string name="register">Registreer</string>
+    <string name="email">E-pos</string>
+    <string name="password">Wagwoord</string>
+    <string name="first_name">Voornaam</string>
+    <string name="last_name">Van</string>
+    <string name="phone_number">Telefoonnommer</string>
+    <string name="confirm_password">Bevestig Wagwoord</string>
+    <string name="tenant">Huurder</string>
+    <string name="landlord">Eienaar</string>
+
+    <!-- Navigation -->
+    <string name="dashboard">Dashboard</string>
+    <string name="properties">Eiendomme</string>
+    <string name="favorites">Gunstelinge</string>
+    <string name="profile">Profiel</string>
+
+    <!-- Property -->
+    <string name="search_properties">Soek eiendomme…</string>
+    <string name="no_properties_found">Geen eiendomme gevind</string>
+    <string name="bedrooms">%d Slaapkamers</string>
+    <string name="price_per_month">R %.0f/maand</string>
+
+    <!-- Profile -->
+    <string name="edit_profile">Wysig Profiel</string>
+    <string name="change_language">Verander Taal</string>
+    <string name="notification_settings">Kennisgewing Instellings</string>
+    <string name="help_support">Hulp &amp; Ondersteuning</string>
+    <string name="logout">Teken Uit</string>
+
+    <string name="rent_reminder">Huur Herinnering</string>
+    <string name="rent_due_soon">Huur vir %1$s is oor %2$d dae verskuldig</string>
+    <string name="new_property_available">Nuwe Eiendom Beskikbaar</string>
+    <string name="new_property_in_location">Nuwe eiendom beskikbaar in %s</string>
+
+    <string name="settings">Instellings</string>
+    <string name="appearance">Voorkoms</string>
+    <string name="dark_mode">Donker Modus</string>
+    <string name="language">Taal</string>
+    <string name="notifications">Kennisgewings</string>
+    <string name="push_notifications">Stoot Kennisgewings</string>
+    <string name="offline_mode">Aflyn Modus</string>
+    <string name="enable_offline_access">Aktiveer Aflyn Toegang</string>
+    <string name="save_offline_desc">Stoor eiendomme vir aflyn besigtiging</string>
+</resources>

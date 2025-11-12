@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "395438884628",
+    "project_id": "breezynest-rental-app",
+    "storage_bucket": "breezynest-rental-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395438884628:android:21df0eeff42844e049a401",
+        "android_client_info": {
+          "package_name": "com.example.opsc6312finalpoe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395438884628-3avh500f9s8c1boc65o97sf3gqjkaqvj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjIebqcGzGI4AZgHw6HcKFW5Qmt28Z7N4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395438884628-3avh500f9s8c1boc65o97sf3gqjkaqvj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">BreezyNest</string>
+
+    <!-- Authentication -->
+    <string name="login">Ngena Ngemvume</string>
+    <string name="register">Bhalisa</string>
+    <string name="email">I-imeyili</string>
+    <string name="password">Iphasiwedi</string>
+    <string name="first_name">Igama</string>
+    <string name="last_name">Isibongo</string>
+    <string name="phone_number">Inombolo Yocingo</string>
+    <string name="confirm_password">Qinisekisa Iphasiwedi</string>
+    <string name="tenant">Umqashi</string>
+    <string name="landlord">Umnini</string>
+
+    <!-- Navigation -->
+    <string name="dashboard">Idebhodi</string>
+    <string name="properties">Izakhiwo</string>
+    <string name="favorites">Izintandokazi</string>
+    <string name="profile">Iphrofayili</string>
+
+    <!-- Property -->
+    <string name="search_properties">Sesha izakhiwo…</string>
+    <string name="no_properties_found">Azikho izakhiwo ezitholakele</string>
+    <string name="bedrooms">Amakamelo okulala angu-%d</string>
+    <string name="price_per_month">R %.0f/inyanga</string>
+
+    <!-- Profile -->
+    <string name="edit_profile">Hlela Iphrofayili</string>
+    <string name="change_language">Shintsha Ulimi</string>
+    <string name="notification_settings">Izilungiselelo Zesaziso</string>
+    <string name="help_support">Usizo &amp; Ukusekelwa</string>
+    <string name="logout">Phuma</string>
+
+    <string name="rent_reminder">Isikhumbuzi Sokuqasha</string>
+    <string name="rent_due_soon">Iqasha le-%1$s lizokhokhelwa emuva kwezinsuku ezingu-%2$d</string>
+    <string name="new_property_available">Isakhiwo Elisha Siyatholakala</string>
+    <string name="new_property_in_location">Isakhiwo esisha sitholakala e-%s</string>
+
+    <string name="settings">Izilungiselelo</string>
+    <string name="appearance">Isimo</string>
+    <string name="dark_mode">Imodi Emnyama</string>
+    <string name="language">Ulimi</string>
+    <string name="notifications">Izaziso</string>
+    <string name="push_notifications">Izaziso Zokucindezela</string>
+    <string name="offline_mode">Imodi Engaxhunyiwe Ku-inthanethi</string>
+    <string name="enable_offline_access">Nika Amandla Ukufinyelela Okungaxhunyiwe Ku-inthanethi</string>
+    <string name="save_offline_desc">Londoloza izakhiwo ukuze uzibuke ungaxhunyiwe ku-inthanethi</string>
+</resources>
