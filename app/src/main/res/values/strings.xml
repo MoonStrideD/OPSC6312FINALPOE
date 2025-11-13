@@ -99,6 +99,7 @@
     <string name="welcome_back">Welcome Back!</string>
     <string name="find_perfect_home">Find your perfect home today</string>
     <string name="new_properties_daily">New properties added daily</string>
+    <string name="messages_list">List of messages</string>
 
     <!-- Quick Actions -->
     <string name="quick_actions">Quick Actions</string>
