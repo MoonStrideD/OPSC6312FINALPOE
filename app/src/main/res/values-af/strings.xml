@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BreezyNest</string>
+    <string name="notifications_list">Lys van kennisgewings</string>
 
     <!-- Authentication -->
     <string name="login">Teken In</string>

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">BreezyNest</string>
+    <string name="logo" translatable="false">App logo</string>
+    <string name="notifications_list">List of notifications</string>
 
     <!-- Authentication -->
     <string name="login">Login</string>
