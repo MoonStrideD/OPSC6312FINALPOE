@@ -17,4 +17,6 @@
     <color name="primaryColor">@color/primary_green</color>
     <color name="primaryDarkColor">@color/primary_dark_green</color>
     <color name="accentColor">@color/accent_teal</color>
+
+    <color name="purple_500">#6200EE</color>
 </resources>
