@@ -1,9 +1,9 @@
 package com.example.opsc6312finalpoe.data.local
 
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import android.content.Context
 
 @Database(
     entities = [PropertyEntity::class],
@@ -22,7 +22,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "breezynest_database"
+                    "breezyNest_database"
                 ).build()
                 INSTANCE = instance
                 instance
