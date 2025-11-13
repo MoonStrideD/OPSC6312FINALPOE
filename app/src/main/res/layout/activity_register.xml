@@ -7,16 +7,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="24dp"
+        android:gravity="center_horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Create Account"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="30dp" />
+        <!-- Logo -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo"
+            android:layout_marginBottom="20dp"
+            android:contentDescription="@string/app_name" />
 
+        <!-- First Name -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,6 +32,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Last Name -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,6 +46,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Email -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,6 +61,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Phone -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,6 +76,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Password -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,6 +91,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Confirm Password -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,6 +106,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Role Selection -->
         <RadioGroup
             android:id="@+id/radioGroupRole"
             android:layout_width="match_parent"
@@ -123,6 +131,7 @@
 
         </RadioGroup>
 
+        <!-- Register Button -->
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
@@ -130,6 +139,7 @@
             android:text="Register"
             android:layout_marginBottom="16dp" />
 
+        <!-- Progress Bar -->
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
@@ -137,6 +147,7 @@
             android:layout_gravity="center"
             android:visibility="gone" />
 
+        <!-- Login Text -->
         <TextView
             android:id="@+id/tvLogin"
             android:layout_width="wrap_content"
@@ -147,5 +158,4 @@
             android:clickable="true" />
 
     </LinearLayout>
-
 </ScrollView>
