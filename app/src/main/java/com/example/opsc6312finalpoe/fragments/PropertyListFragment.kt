@@ -5,14 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.opsc6312finalpoe.databinding.FragmentPropertyListBinding
 import com.example.opsc6312finalpoe.repository.PropertyRepository
 import com.example.opsc6312finalpoe.repository.PropertyViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class PropertyListFragment : Fragment() {
     private lateinit var binding: FragmentPropertyListBinding
-    private lateinit var propertyViewModel: PropertyViewModel
+    private val propertyViewModel: PropertyViewModel by viewModels {
+        PropertyViewModelFactory(PropertyRepository(requireContext()))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,9 +33,6 @@ class PropertyListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val propertyRepository = PropertyRepository(requireContext())
-        propertyViewModel = PropertyViewModel(propertyRepository)
-
         setupRecyclerView()
         setupObservers()
         loadProperties()
@@ -39,29 +44,49 @@ class PropertyListFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        propertyViewModel.properties.observe(viewLifecycleOwner) { properties ->
-            // Update recycler view adapter
-            binding.tvEmpty.visibility = if (properties.isEmpty()) View.VISIBLE else View.GONE
+        // Observe properties using StateFlow
+        viewLifecycleOwner.lifecycleScope.launch {
+            propertyViewModel.properties.collect { properties ->
+                // Update recycler view adapter
+                binding.tvEmpty.visibility = if (properties.isEmpty()) View.VISIBLE else View.GONE
+                // TODO: Update adapter with properties
+            }
         }
 
-        propertyViewModel.loadingState.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                is PropertyViewModel.LoadingState.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
+        // Observe loading state using StateFlow
+        viewLifecycleOwner.lifecycleScope.launch {
+            propertyViewModel.loadingState.collect { state ->
+                when (state) {
+                    is PropertyViewModel.LoadingState.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is PropertyViewModel.LoadingState.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                    }
+                    is PropertyViewModel.LoadingState.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        // Show error message (you can add a Snackbar or Toast here)
+                    }
+                    else -> {}
                 }
-                is PropertyViewModel.LoadingState.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                }
-                is PropertyViewModel.LoadingState.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    // Show error message
-                }
-                else -> {}
             }
         }
     }
 
     private fun loadProperties() {
         propertyViewModel.loadProperties()
+    }
+}
+
+// Add this Factory class
+class PropertyViewModelFactory(
+    private val propertyRepository: PropertyRepository
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(PropertyViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return PropertyViewModel(propertyRepository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

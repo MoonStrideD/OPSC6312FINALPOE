@@ -25,4 +25,8 @@ interface PropertyDao {
 
     @Query("SELECT * FROM properties WHERE location LIKE '%' || :query || '%' OR title LIKE '%' || :query || '%'")
     fun searchProperties(query: String): Flow<List<PropertyEntity>>
+
+    // Add this method to get properties without Flow for direct access
+    @Query("SELECT * FROM properties")
+    suspend fun getAllPropertiesDirect(): List<PropertyEntity>
 }

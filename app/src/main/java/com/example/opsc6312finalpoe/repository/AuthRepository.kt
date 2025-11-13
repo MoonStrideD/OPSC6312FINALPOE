@@ -147,22 +147,23 @@ class AuthRepository(private val activity: Activity) {
     }
 
     // MICROSOFT AUTHENTICATION
+    // MICROSOFT AUTHENTICATION - SIMPLIFIED VERSION
     suspend fun loginWithMicrosoft(): Result<Boolean> {
         return try {
             val microsoftResult = microsoftAuthHelper.signIn(activity)
 
             if (microsoftResult.isSuccess) {
-                val idToken = microsoftResult.getOrNull()?.idToken
-                if (idToken != null) {
-                    // For now, we'll just handle the Microsoft token
-                    // We'll integrate with Firebase later
-                    Log.d("AuthRepository", "Microsoft sign-in successful, token: ${idToken.take(20)}...")
+                val accessToken = microsoftResult.getOrNull()
+                if (accessToken != null) {
+                    Log.d("AuthRepository", "Microsoft sign-in successful!")
+                    Log.d("AuthRepository", "Microsoft access token received (first 50 chars): ${accessToken.take(50)}...")
 
-                    // TODO: Integrate with Firebase Auth
-                    // For now, return success to test the flow
+                    // For now, we'll just return success since we have the token
+                    // In a real app, we would exchange this token with Firebase
+                    // or use it to get user information
                     Result.success(true)
                 } else {
-                    Result.failure(Exception("Microsoft ID token is null"))
+                    Result.failure(Exception("Microsoft access token is null"))
                 }
             } else {
                 Result.failure(microsoftResult.exceptionOrNull() ?: Exception("Microsoft sign-in failed"))
