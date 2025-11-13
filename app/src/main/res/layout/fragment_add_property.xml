@@ -31,9 +31,9 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_add"
-                    android:tint="@android:color/white"
                     android:layout_marginEnd="12dp"
-                    android:contentDescription="Add Property" />
+                    android:contentDescription="Add Property"
+                    app:tint="@android:color/white" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -155,7 +155,8 @@
                     android:id="@+id/spinnerPropertyType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="16dp"
+                    android:minHeight="48dp" />
 
                 <!-- Image Selection -->
                 <Button
