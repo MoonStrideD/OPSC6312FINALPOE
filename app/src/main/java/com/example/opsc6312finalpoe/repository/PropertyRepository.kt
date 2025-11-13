@@ -107,7 +107,7 @@ class PropertyRepository(private val context: Context) {
 
     suspend fun getPropertiesOffline(): List<Property> {
         return try {
-            val propertyEntities = appDatabase.propertyDao().getAllProperties()
+            val propertyEntities = appDatabase.propertyDao().getAllPropertiesDirect()
             propertyEntities.map { it.toProperty() }
         } catch (e: Exception) {
             emptyList()

@@ -4,14 +4,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class PropertyViewModel(private val propertyRepository: PropertyRepository) : ViewModel() {
     private val _properties = MutableStateFlow<List<com.example.opsc6312finalpoe.models.Property>>(emptyList())
-    val properties: StateFlow<List<com.example.opsc6312finalpoe.models.Property>> = _properties
+    val properties: StateFlow<List<com.example.opsc6312finalpoe.models.Property>> = _properties.asStateFlow()
 
     private val _loadingState = MutableStateFlow<LoadingState>(LoadingState.Idle)
-    val loadingState: StateFlow<LoadingState> = _loadingState
+    val loadingState: StateFlow<LoadingState> = _loadingState.asStateFlow()
 
     fun loadProperties() {
         viewModelScope.launch {
