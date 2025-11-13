@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.example.opsc6312finalpoe.R
 import com.example.opsc6312finalpoe.databinding.FragmentDashboardBinding
 
 open class DashboardFragment : Fragment() {
@@ -24,9 +26,11 @@ open class DashboardFragment : Fragment() {
     }
 
     protected open fun setupCommonUI() {
-        // Common dashboard setup (logo, welcome message, etc.)
-        // Add your logo here
-        binding.ivLogo.visibility = View.VISIBLE
-        binding.ivLogo.setImageResource(R.drawable.logo)
+        // Null-safe lookup: avoids compile errors if the binding class doesn't include ivLogo.
+        val logoView = binding.root.findViewById<ImageView?>(R.id.ivLogo)
+        logoView?.let {
+            it.visibility = View.VISIBLE
+            it.setImageResource(R.drawable.logo)
+        }
     }
 }

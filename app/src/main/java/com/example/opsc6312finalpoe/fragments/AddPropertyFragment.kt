@@ -1,5 +1,4 @@
 package com.example.opsc6312finalpoe.fragments
-
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -9,13 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.opsc6312finalpoe.databinding.FragmentAddPropertyBinding
 import com.example.opsc6312finalpoe.models.Property
 import com.example.opsc6312finalpoe.repository.AuthRepository
 import com.example.opsc6312finalpoe.repository.PropertyRepository
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.launch
 import java.util.UUID
 
@@ -44,7 +44,6 @@ class AddPropertyFragment : Fragment() {
     }
 
     private fun setupUI() {
-        // Setup property type spinner
         val propertyTypes = arrayOf("House", "Apartment", "Room", "Studio")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, propertyTypes)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -52,14 +51,9 @@ class AddPropertyFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
-        binding.btnSelectImages.setOnClickListener {
-            selectImages()
-        }
-
+        binding.btnSelectImages.setOnClickListener { selectImages() }
         binding.btnAddProperty.setOnClickListener {
-            if (validateInputs()) {
-                addProperty()
-            }
+            if (validateInputs()) addProperty()
         }
     }
 
@@ -73,15 +67,13 @@ class AddPropertyFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGES_REQUEST && resultCode == Activity.RESULT_OK) {
-            if (data?.clipData != null) {
-                val count = data.clipData!!.itemCount
+            data?.clipData?.let {
+                val count = it.itemCount
                 for (i in 0 until count) {
-                    val imageUri = data.clipData!!.getItemAt(i).uri
+                    val imageUri = it.getItemAt(i).uri
                     selectedImages.add(imageUri)
                 }
-            } else if (data?.data != null) {
-                selectedImages.add(data.data!!)
-            }
+            } ?: data?.data?.let { selectedImages.add(it) }
             updateSelectedImagesCount()
         }
     }
@@ -91,32 +83,34 @@ class AddPropertyFragment : Fragment() {
     }
 
     private fun validateInputs(): Boolean {
-        // Add validation logic here
         return true
     }
 
     private fun addProperty() {
         binding.progressBar.visibility = View.VISIBLE
 
-        CoroutineScope(Dispatchers.Main).launch {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             try {
                 val landlordId = authRepository.getCurrentUser()?.uid ?: ""
                 val propertyId = UUID.randomUUID().toString()
 
-                // Upload images first
                 val imageUrls = uploadImages(propertyId)
+
+                val price = binding.etPrice.text?.toString().orEmpty().toDoubleOrNull() ?: 0.0
+                val bedrooms = binding.etBedrooms.text?.toString().orEmpty().toIntOrNull() ?: 0
+                val bathrooms = binding.etBathrooms.text?.toString().orEmpty().toIntOrNull() ?: 0
 
                 val property = Property(
                     propertyId = propertyId,
                     landlordId = landlordId,
-                    title = binding.etTitle.text.toString(),
-                    description = binding.etDescription.text.toString(),
-                    price = binding.etPrice.text.toString().toDouble(),
+                    title = binding.etTitle.text?.toString().orEmpty(),
+                    description = binding.etDescription.text?.toString().orEmpty(),
+                    price = price,
                     propertyType = binding.spinnerPropertyType.selectedItem.toString(),
-                    bedrooms = binding.etBedrooms.text.toString().toInt(),
-                    bathrooms = binding.etBathrooms.text.toString().toInt(),
-                    location = binding.etLocation.text.toString(),
-                    latitude = 0.0, // You can add map integration later
+                    bedrooms = bedrooms,
+                    bathrooms = bathrooms,
+                    location = binding.etLocation.text?.toString().orEmpty(),
+                    latitude = 0.0,
                     longitude = 0.0,
                     amenities = emptyList(),
                     photos = imageUrls,
@@ -124,17 +118,10 @@ class AddPropertyFragment : Fragment() {
                 )
 
                 val result = propertyRepository.addProperty(property)
-                if (result.isSuccess) {
-                    // Show success message and clear form
-                    binding.progressBar.visibility = View.GONE
-                    clearForm()
-                } else {
-                    // Show error message
-                    binding.progressBar.visibility = View.GONE
-                }
+                binding.progressBar.visibility = View.GONE
+                if (result.isSuccess) clearForm()
             } catch (e: Exception) {
                 binding.progressBar.visibility = View.GONE
-                // Handle error
             }
         }
     }
@@ -147,7 +134,8 @@ class AddPropertyFragment : Fragment() {
             val fileName = "properties/$propertyId/${UUID.randomUUID()}"
             val storageRef = storage.reference.child(fileName)
 
-            val uploadTask = storageRef.putFile(imageUri).await()
+            // suspend until upload completes and then get download URL
+            storageRef.putFile(imageUri).await()
             val downloadUrl = storageRef.downloadUrl.await()
             imageUrls.add(downloadUrl.toString())
         }
@@ -156,12 +144,12 @@ class AddPropertyFragment : Fragment() {
     }
 
     private fun clearForm() {
-        binding.etTitle.text.clear()
-        binding.etDescription.text.clear()
-        binding.etPrice.text.clear()
-        binding.etBedrooms.text.clear()
-        binding.etBathrooms.text.clear()
-        binding.etLocation.text.clear()
+        binding.etTitle.text?.clear()
+        binding.etDescription.text?.clear()
+        binding.etPrice.text?.clear()
+        binding.etBedrooms.text?.clear()
+        binding.etBathrooms.text?.clear()
+        binding.etLocation.text?.clear()
         selectedImages.clear()
         updateSelectedImagesCount()
     }

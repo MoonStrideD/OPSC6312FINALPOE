@@ -27,18 +27,19 @@
                 android:gravity="center_vertical"
                 android:background="@color/primary_green">
 
-                <ImageView
+                <!-- Use AppCompatImageView for tint support -->
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_help"
-                    android:tint="@android:color/white"
+                    app:tint="@android:color/white"
                     android:layout_marginEnd="12dp"
-                    android:contentDescription="Help & Support" />
+                    android:contentDescription="Help and  Support" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Help & Support"
+                    android:text="Help and Support"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/white" />

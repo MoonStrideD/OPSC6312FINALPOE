@@ -31,6 +31,7 @@ class HelpSupportFragment : Fragment() {
             val intent = Intent(Intent.ACTION_SENDTO).apply {
                 data = Uri.parse("mailto:developer@breezynest.com")
                 putExtra(Intent.EXTRA_SUBJECT, "BreezyNest Support")
+                putExtra(Intent.EXTRA_TEXT, "Hello BreezyNest team,\n\nI need help with:")
             }
             startActivity(intent)
         }
