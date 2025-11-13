@@ -1,5 +1,4 @@
 package com.example.opsc6312finalpoe.utils
-
 import android.app.Activity
 import android.content.Context
 import android.util.Log
