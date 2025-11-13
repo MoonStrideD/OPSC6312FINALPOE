@@ -32,7 +32,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Favorites"
+                android:text="@string/my_favorites"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white" />
@@ -56,14 +56,15 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewFavorites"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:contentDescription="@string/favorites_list" />
 
         <TextView
             android:id="@+id/tvEmpty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="No favorite properties yet"
+            android:text="@string/no_favorites_yet"
             android:textSize="16sp"
             android:textColor="#666"
             android:visibility="visible" />
