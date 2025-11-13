@@ -46,4 +46,10 @@
     <string name="offline_mode">Imodi Engaxhunyiwe Ku-inthanethi</string>
     <string name="enable_offline_access">Nika Amandla Ukufinyelela Okungaxhunyiwe Ku-inthanethi</string>
     <string name="save_offline_desc">Londoloza izakhiwo ukuze uzibuke ungaxhunyiwe ku-inthanethi</string>
+    <!-- Added missing keys to match default resources -->
+    <string name="full_name">%1$s %2$s</string>
+    <string name="back_arrow">←</string>
+    <string name="english">English</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="isi_zulu">isiZulu</string>
 </resources>

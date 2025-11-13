@@ -47,4 +47,10 @@
     <string name="offline_mode">Aflyn Modus</string>
     <string name="enable_offline_access">Aktiveer Aflyn Toegang</string>
     <string name="save_offline_desc">Stoor eiendomme vir aflyn besigtiging</string>
+    <!-- Added missing keys to match default resources -->
+    <string name="full_name">%1$s %2$s</string>
+    <string name="back_arrow">←</string>
+    <string name="english">Engels</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="isi_zulu">isiZulu</string>
 </resources>
