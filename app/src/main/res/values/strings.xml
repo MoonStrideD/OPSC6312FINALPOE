@@ -47,6 +47,7 @@
     <string name="offline_mode">Offline Mode</string>
     <string name="enable_offline_access">Enable Offline Access</string>
     <string name="save_offline_desc">Save properties for offline viewing</string>
+    <string name="properties_list">List of properties</string>
     <string name="back_arrow">←</string>
     <string name="english">English</string>
     <string name="afrikaans">Afrikaans</string>
