@@ -14,26 +14,14 @@ object LanguageHelper {
         val resources: Resources = context.resources
         val configuration: Configuration = resources.configuration
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            configuration.setLocale(locale)
-        } else {
-            configuration.locale = locale
-        }
+        configuration.setLocale(locale)
 
         resources.updateConfiguration(configuration, resources.displayMetrics)
 
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            context.createConfigurationContext(configuration)
-        } else {
-            context
-        }
+        return context.createConfigurationContext(configuration)
     }
 
     fun getCurrentLanguage(context: Context): String {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            context.resources.configuration.locales[0].language
-        } else {
-            context.resources.configuration.locale.language
-        }
+        return context.resources.configuration.locales[0].language
     }
 }
