@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BreezyNest</string>
 
@@ -18,6 +19,8 @@
     <string name="properties">Izakhiwo</string>
     <string name="favorites">Izintandokazi</string>
     <string name="profile">Iphrofayili</string>
+    <string name="chat">Xoxa</string>
+    <string name="notifications">Izaziso</string>
 
     <!-- Property -->
     <string name="search_properties">Sesha izakhiwo…</string>
@@ -41,16 +44,61 @@
     <string name="appearance">Isimo</string>
     <string name="dark_mode">Imodi Emnyama</string>
     <string name="language">Ulimi</string>
-    <string name="notifications">Izaziso</string>
     <string name="push_notifications">Izaziso Zokucindezela</string>
     <string name="offline_mode">Imodi Engaxhunyiwe Ku-inthanethi</string>
     <string name="enable_offline_access">Nika Amandla Ukufinyelela Okungaxhunyiwe Ku-inthanethi</string>
     <string name="save_offline_desc">Londoloza izakhiwo ukuze uzibuke ungaxhunyiwe ku-inthanethi</string>
-    <!-- Added missing keys to match default resources -->
-    <string name="full_name">%1$s %2$s</string>
+    <string name="properties_list">Uhlu lwezakhiwo</string>
     <string name="back_arrow">←</string>
     <string name="english">English</string>
     <string name="afrikaans">Afrikaans</string>
     <string name="isi_zulu">isiZulu</string>
-    <string name="properties_list">Uhlu lwezakhiwo</string>
+    <string name="full_name">%1$s %2$s</string>
+
+    <!-- New Strings for Enhanced Features -->
+    <string name="messages">Imilayezo</string>
+    <string name="clear_all">Sula Konke</string>
+    <string name="no_messages_yet">Awekho amalayezo okwamanje</string>
+    <string name="no_favorites_yet">Awekho izakhiwo ezintandwayo okwamanje</string>
+    <string name="no_notifications">Azikho izaziso</string>
+
+    <!-- Dashboard Strings -->
+    <string name="landlord_dashboard">Idebodi Yomnikazi</string>
+    <string name="manage_properties">Phatha izakhiwo zakho ngempumelelo</string>
+    <string name="property_management">Ukuphathwa Kwezakhiwo</string>
+    <string name="add_new_property">Engeza Isakhiwo Esisha</string>
+    <string name="view_my_properties">Buka Izakhiwo Zami</string>
+    <string name="rental_applications">Izicelo Zokuqasha</string>
+    <string name="quick_stats">Izibalo Ezesheshayo</string>
+    <string name="total_properties">Izakhiwo</string>
+    <string name="active_applications">Izicelo</string>
+    <string name="recently_added">Kwengezwe Muva</string>
+    <string name="browse_properties">Dlulisa Amehlo Izakhiwo</string>
+    <string name="my_applications">Izicelo Zami</string>
+
+    <!-- Property Management -->
+    <string name="property_title">Isihloko Sesakhiwo</string>
+    <string name="description">Incazelo</string>
+    <string name="monthly_rent">Iqasha Lenyanga (R)</string>
+    <string name="location">Indawo</string>
+    <string name="property_type">Uhlobo Lwesakhiwo</string>
+    <string name="select_property_images">Khetha Izithombe Zesakhiwo</string>
+    <string name="no_images_selected">Azikho izithombe ezikhethiwe</string>
+
+    <!-- Profile Management -->
+    <string name="update_profile">Vuselela Iphrofayili</string>
+
+    <!-- Help & Support -->
+    <string name="contact_developer">Xhumana Nosunguli</string>
+    <string name="send_email">Thumela I-imeyili</string>
+    <string name="call_support">Fonela Usizo</string>
+    <string name="back_to_profile">Buyela Kuyiphrofayili</string>
+
+    <!-- Welcome Messages -->
+    <string name="welcome_back">Wamukelekile!</string>
+    <string name="find_perfect_home">Thola ikhaya lakho eliphelele namuhla</string>
+    <string name="new_properties_daily">Kuzongezwa izakhiwo ezintsha nsuku zonke</string>
+
+    <!-- Quick Actions -->
+    <string name="quick_actions">Izenzo Ezesheshayo</string>
 </resources>

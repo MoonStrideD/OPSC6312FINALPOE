@@ -18,6 +18,8 @@
     <string name="properties">Properties</string>
     <string name="favorites">Favorites</string>
     <string name="profile">Profile</string>
+    <string name="chat">Chat</string>
+    <string name="notifications">Notifications</string>
 
     <!-- Property -->
     <string name="search_properties">Search properties…</string>
@@ -42,7 +44,6 @@
     <string name="appearance">Appearance</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="language">Language</string>
-    <string name="notifications">Notifications</string>
     <string name="push_notifications">Push Notifications</string>
     <string name="offline_mode">Offline Mode</string>
     <string name="enable_offline_access">Enable Offline Access</string>
@@ -52,4 +53,52 @@
     <string name="english">English</string>
     <string name="afrikaans">Afrikaans</string>
     <string name="isi_zulu">isiZulu</string>
+
+    <!-- New Strings for Enhanced Features -->
+    <string name="messages">Messages</string>
+    <string name="clear_all">Clear All</string>
+    <string name="no_messages_yet">No messages yet</string>
+    <string name="no_favorites_yet">No favorite properties yet</string>
+    <string name="no_notifications">No notifications</string>
+
+    <!-- Dashboard Strings -->
+    <string name="landlord_dashboard">Landlord Dashboard</string>
+    <string name="manage_properties">Manage your properties efficiently</string>
+    <string name="property_management">Property Management</string>
+    <string name="add_new_property">Add New Property</string>
+    <string name="view_my_properties">View My Properties</string>
+    <string name="rental_applications">Rental Applications</string>
+    <string name="quick_stats">Quick Stats</string>
+    <string name="total_properties">Properties</string>
+    <string name="active_applications">Applications</string>
+    <string name="recently_added">Recently Added</string>
+    <string name="browse_properties">Browse Properties</string>
+    <string name="my_applications">My Applications</string>
+
+    <!-- Property Management -->
+    <string name="property_title">Property Title</string>
+    <string name="description">Description</string>
+    <string name="monthly_rent">Monthly Rent (R)</string>
+    <string name="location">Location</string>
+    <string name="property_type">Property Type</string>
+    <string name="select_property_images">Select Property Images</string>
+    <string name="no_images_selected">No images selected</string>
+
+    <!-- Profile Management -->
+    <string name="update_profile">Update Profile</string>
+
+    <!-- Help & Support -->
+    <string name="contact_developer">Contact Developer</string>
+    <string name="send_email">Send Email</string>
+    <string name="call_support">Call Support</string>
+    <string name="back_to_profile">Back to Profile</string>
+
+    <!-- Welcome Messages -->
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="find_perfect_home">Find your perfect home today</string>
+    <string name="new_properties_daily">New properties added daily</string>
+
+    <!-- Quick Actions -->
+    <string name="quick_actions">Quick Actions</string>
+
 </resources>

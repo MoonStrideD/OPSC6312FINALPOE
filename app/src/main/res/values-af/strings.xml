@@ -19,6 +19,8 @@
     <string name="properties">Eiendomme</string>
     <string name="favorites">Gunstelinge</string>
     <string name="profile">Profiel</string>
+    <string name="chat">Klets</string>
+    <string name="notifications">Kennisgewings</string>
 
     <!-- Property -->
     <string name="search_properties">Soek eiendomme…</string>
@@ -42,16 +44,61 @@
     <string name="appearance">Voorkoms</string>
     <string name="dark_mode">Donker Modus</string>
     <string name="language">Taal</string>
-    <string name="notifications">Kennisgewings</string>
     <string name="push_notifications">Stoot Kennisgewings</string>
     <string name="offline_mode">Aflyn Modus</string>
     <string name="enable_offline_access">Aktiveer Aflyn Toegang</string>
     <string name="save_offline_desc">Stoor eiendomme vir aflyn besigtiging</string>
-    <!-- Added missing keys to match default resources -->
-    <string name="full_name">%1$s %2$s</string>
+    <string name="properties_list">Lys van eiendomme</string>
     <string name="back_arrow">←</string>
     <string name="english">Engels</string>
     <string name="afrikaans">Afrikaans</string>
     <string name="isi_zulu">isiZulu</string>
-    <string name="properties_list">Lys van eiendomme</string>
+    <string name="full_name">%1$s %2$s</string>
+
+    <!-- New Strings for Enhanced Features -->
+    <string name="messages">Boodskappe</string>
+    <string name="clear_all">Vee Alles</string>
+    <string name="no_messages_yet">Nog geen boodskappe</string>
+    <string name="no_favorites_yet">Nog geen gunsteling eiendomme</string>
+    <string name="no_notifications">Geen kennisgewings</string>
+
+    <!-- Dashboard Strings -->
+    <string name="landlord_dashboard">Eienaar Dashboard</string>
+    <string name="manage_properties">Bestuur u eiendomme doeltreffend</string>
+    <string name="property_management">Eiendom Bestuur</string>
+    <string name="add_new_property">Voeg Nuwe Eiendom By</string>
+    <string name="view_my_properties">Bekyk My Eiendomme</string>
+    <string name="rental_applications">Huuraansoeke</string>
+    <string name="quick_stats">Vinnige Statistieke</string>
+    <string name="total_properties">Eiendomme</string>
+    <string name="active_applications">Aansoeke</string>
+    <string name="recently_added">Onlangs Bygevoeg</string>
+    <string name="browse_properties">Blaai Eiendomme</string>
+    <string name="my_applications">My Aansoeke</string>
+
+    <!-- Property Management -->
+    <string name="property_title">Eiendom Titel</string>
+    <string name="description">Beskrywing</string>
+    <string name="monthly_rent">Maandelikse Huur (R)</string>
+    <string name="location">Ligging</string>
+    <string name="property_type">Eiendom Tipe</string>
+    <string name="select_property_images">Kies Eiendom Beelde</string>
+    <string name="no_images_selected">Geen beelde gekies</string>
+
+    <!-- Profile Management -->
+    <string name="update_profile">Opdateer Profiel</string>
+
+    <!-- Help & Support -->
+    <string name="contact_developer">Kontak Ontwikkelaar</string>
+    <string name="send_email">Stuur E-pos</string>
+    <string name="call_support">Bel Ondersteuning</string>
+    <string name="back_to_profile">Terug na Profiel</string>
+
+    <!-- Welcome Messages -->
+    <string name="welcome_back">Welkom Terug!</string>
+    <string name="find_perfect_home">Vind u perfekte huis vandag</string>
+    <string name="new_properties_daily">Nuwe eiendomme daagliks bygevoeg</string>
+
+    <!-- Quick Actions -->
+    <string name="quick_actions">Vinnige Aksies</string>
 </resources>
