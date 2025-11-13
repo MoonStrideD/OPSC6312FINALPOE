@@ -68,6 +68,26 @@ class AuthRepository(private val activity: Activity) {
         }
     }
 
+    // Add this to your AuthRepository.kt
+    suspend fun updateUserProfile(userId: String, firstName: String, lastName: String, phoneNumber: String): Result<Boolean> {
+        return try {
+            val updates = mapOf(
+                "firstName" to firstName,
+                "lastName" to lastName,
+                "phoneNumber" to phoneNumber
+            )
+
+            db.collection("users").document(userId)
+                .update(updates)
+                .await()
+
+            Result.success(true)
+        } catch (e: Exception) {
+            Log.e("AuthRepository", "Profile update failed: ${e.message}")
+            Result.failure(e)
+        }
+    }
+
     suspend fun registerWithEmail(
         email: String,
         password: String,

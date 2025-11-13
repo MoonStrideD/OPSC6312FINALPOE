@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.opsc6312finalpoe.MainActivity
 import com.example.opsc6312finalpoe.R
 import com.example.opsc6312finalpoe.activities.SettingsActivity
 import com.example.opsc6312finalpoe.databinding.FragmentProfileBinding
