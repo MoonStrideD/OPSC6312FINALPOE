@@ -31,9 +31,9 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_profile"
-                    android:tint="@android:color/white"
                     android:layout_marginEnd="12dp"
-                    android:contentDescription="Edit Profile" />
+                    android:contentDescription="Edit Profile"
+                    app:tint="@android:color/white" />
 
                 <TextView
                     android:layout_width="wrap_content"
