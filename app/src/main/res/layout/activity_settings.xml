@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -22,7 +22,7 @@
                 android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="←"
+                android:text="@string/back_arrow"
                 android:textSize="18sp"
                 android:background="?attr/selectableItemBackgroundBorderless" />
 
@@ -30,7 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Settings"
+                android:text="@string/settings"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:gravity="center" />
@@ -58,7 +58,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Appearance"
+                    android:text="@string/appearance"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="16dp" />
@@ -73,10 +73,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Dark Mode"
+                        android:text="@string/dark_mode"
                         android:textSize="16sp" />
 
-                    <Switch
+                    <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/switchDarkMode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -104,7 +104,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Language"
+                    android:text="@string/language"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="16dp" />
@@ -119,21 +119,21 @@
                         android:id="@+id/radioEnglish"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="English"
+                        android:text="@string/english"
                         android:layout_marginBottom="8dp" />
 
                     <RadioButton
                         android:id="@+id/radioAfrikaans"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Afrikaans"
+                        android:text="@string/afrikaans"
                         android:layout_marginBottom="8dp" />
 
                     <RadioButton
                         android:id="@+id/radioZulu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="isiZulu" />
+                        android:text="@string/isi_zulu" />
 
                 </RadioGroup>
 
@@ -158,7 +158,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Notifications"
+                    android:text="@string/notifications"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="16dp" />
@@ -173,10 +173,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Push Notifications"
+                        android:text="@string/push_notifications"
                         android:textSize="16sp" />
 
-                    <Switch
+                    <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/switchNotifications"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -203,7 +203,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Offline Mode"
+                    android:text="@string/offline_mode"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="16dp" />
@@ -218,10 +218,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Enable Offline Access"
+                        android:text="@string/enable_offline_access"
                         android:textSize="16sp" />
 
-                    <Switch
+                    <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/switchOfflineMode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -231,7 +231,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Save properties for offline viewing"
+                    android:text="@string/save_offline_desc"
                     android:textSize="12sp"
                     android:textColor="#666"
                     android:layout_marginTop="8dp" />
