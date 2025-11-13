@@ -11,6 +11,21 @@
         android:title="@string/properties" />
 
     <item
+        android:id="@+id/navigation_favorites"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favorites" />
+
+    <item
+        android:id="@+id/navigation_chat"
+        android:icon="@drawable/ic_chat"
+        android:title="@string/chat" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/ic_notifications"
+        android:title="@string/notifications" />
+
+    <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_profile"
         android:title="@string/profile" />
