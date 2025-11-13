@@ -1,13 +1,21 @@
 package com.example.opsc6312finalpoe.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.example.opsc6312finalpoe.MainActivity
 import com.example.opsc6312finalpoe.databinding.FragmentTenantDashboardBinding
 
-class TenantDashboardFragment : DashboardFragment() {
+class TenantDashboardFragment : Fragment() {
     private lateinit var tenantBinding: FragmentTenantDashboardBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         tenantBinding = FragmentTenantDashboardBinding.inflate(inflater, container, false)
         return tenantBinding.root
     }
@@ -25,9 +33,7 @@ class TenantDashboardFragment : DashboardFragment() {
 
         tenantBinding.btnViewApplications.setOnClickListener {
             // Navigate to tenant applications
+            // (activity as? MainActivity)?.replaceFragment(TenantApplicationsFragment())
         }
-
-        // Hide landlord-specific buttons if they exist
-        tenantBinding.btnAddProperty.visibility = View.GONE
     }
 }
