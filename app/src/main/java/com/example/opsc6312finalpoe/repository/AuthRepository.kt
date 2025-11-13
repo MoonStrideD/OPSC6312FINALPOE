@@ -8,6 +8,7 @@ import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.OAuthProvider
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
@@ -150,26 +151,31 @@ class AuthRepository(private val activity: Activity) {
     // MICROSOFT AUTHENTICATION - SIMPLIFIED VERSION
     suspend fun loginWithMicrosoft(): Result<Boolean> {
         return try {
-            val microsoftResult = microsoftAuthHelper.signIn(activity)
+            val provider = OAuthProvider.newBuilder("microsoft.com").build()
 
-            if (microsoftResult.isSuccess) {
-                val accessToken = microsoftResult.getOrNull()
-                if (accessToken != null) {
-                    Log.d("AuthRepository", "Microsoft sign-in successful!")
-                    Log.d("AuthRepository", "Microsoft access token received (first 50 chars): ${accessToken.take(50)}...")
+            // This handles the entire Microsoft OAuth flow
+            val authResult = auth.startActivityForSignInWithProvider(activity, provider).await()
 
-                    // For now, we'll just return success since we have the token
-                    // In a real app, we would exchange this token with Firebase
-                    // or use it to get user information
-                    Result.success(true)
-                } else {
-                    Result.failure(Exception("Microsoft access token is null"))
-                }
-            } else {
-                Result.failure(microsoftResult.exceptionOrNull() ?: Exception("Microsoft sign-in failed"))
+            // Create user in Firestore if needed
+            val userId = authResult.user?.uid ?: ""
+            val userDoc = db.collection("users").document(userId).get().await()
+
+            if (!userDoc.exists()) {
+                val user = User(
+                    userId = userId,
+                    email = authResult.user?.email ?: "",
+                    firstName = authResult.user?.displayName?.split(" ")?.firstOrNull() ?: "",
+                    lastName = authResult.user?.displayName?.split(" ")?.lastOrNull() ?: "",
+                    profilePhotoUrl = authResult.user?.photoUrl?.toString() ?: "",
+                    role = "tenant"
+                )
+                db.collection("users").document(userId).set(user).await()
             }
+
+            Log.d("AuthRepository", "Microsoft login successful via Firebase")
+            Result.success(true)
         } catch (e: Exception) {
-            Log.e("AuthRepository", "Microsoft login failed: ${e.message}")
+            Log.e("AuthRepository", "Firebase Microsoft auth failed: ${e.message}")
             Result.failure(e)
         }
     }
