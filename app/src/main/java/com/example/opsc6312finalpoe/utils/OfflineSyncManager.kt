@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class OfflineSyncManager(private val context: Context) {
-    private val propertyRepository = PropertyRepository()
+    private val propertyRepository = PropertyRepository(context)
     private val appDatabase = AppDatabase.getInstance(context)
     private val sharedPreferencesHelper = SharedPreferencesHelper(context)
 
