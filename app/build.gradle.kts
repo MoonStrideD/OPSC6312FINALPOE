@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.example.opsc6312finalpoe"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.opsc6312finalpoe"
         minSdk = 27
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -62,7 +62,10 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:20.7.0")
 
     // Microsoft Authentication
-    implementation("com.microsoft.identity.client:msal:4.0.1")
+    implementation("com.microsoft.identity.client:msal:4.0.1") {
+        // Exclude a transitive device-display dependency that isn't available in current repos
+        exclude(group = "com.microsoft.device.display", module = "display-mask")
+    }
 
     // Room Database
     implementation("androidx.room:room-runtime:2.6.0")
