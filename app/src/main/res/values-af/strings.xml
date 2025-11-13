@@ -103,4 +103,7 @@
 
     <!-- Quick Actions -->
     <string name="quick_actions">Vinnige Aksies</string>
+
+    <string name="my_favorites">My Gunstelinge</string>
+    <string name="favorites_list">Lys van gunsteling eiendomme</string>
 </resources>

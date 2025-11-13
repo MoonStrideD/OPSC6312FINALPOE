@@ -104,4 +104,7 @@
     <!-- Quick Actions -->
     <string name="quick_actions">Quick Actions</string>
 
+    <string name="my_favorites">My Favorites</string>
+    <string name="favorites_list">List of favorite properties</string>
+
 </resources>
