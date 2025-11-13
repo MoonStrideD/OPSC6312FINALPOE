@@ -1,10 +1,10 @@
 package com.example.opsc6312finalpoe.activities
 
-import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.opsc6312finalpoe.R
 import com.example.opsc6312finalpoe.databinding.ActivitySettingsBinding
 import com.example.opsc6312finalpoe.utils.LanguageHelper
 import com.example.opsc6312finalpoe.utils.SharedPreferencesHelper
@@ -77,7 +77,8 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun changeLanguage(languageCode: String) {
         sharedPreferencesHelper.saveLanguage(languageCode)
-        val newContext = LanguageHelper.setAppLocale(this, languageCode)
+        // apply locale change; no need to keep returned Context here
+        LanguageHelper.setAppLocale(this, languageCode)
 
         // Restart activity to apply language changes
         recreate()

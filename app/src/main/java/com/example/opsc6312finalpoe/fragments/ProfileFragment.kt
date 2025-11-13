@@ -1,10 +1,13 @@
 package com.example.opsc6312finalpoe.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.opsc6312finalpoe.R
+import com.example.opsc6312finalpoe.activities.SettingsActivity
 import com.example.opsc6312finalpoe.databinding.FragmentProfileBinding
 import com.example.opsc6312finalpoe.repository.AuthRepository
 import kotlinx.coroutines.CoroutineScope
@@ -35,7 +38,7 @@ class ProfileFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             val user = authRepository.getCurrentUserData()
             user?.let {
-                binding.tvUserName.text = "${it.firstName} ${it.lastName}"
+                binding.tvUserName.text = getString(R.string.full_name, it.firstName, it.lastName)
                 binding.tvUserEmail.text = it.email
                 binding.tvUserPhone.text = it.phoneNumber
                 binding.tvUserRole.text = it.role
@@ -53,7 +56,6 @@ class ProfileFragment : Fragment() {
             // Navigate to edit profile
         }
 
-        // Add this to setupClickListeners() in ProfileFragment
         binding.btnSettings.setOnClickListener {
             val intent = Intent(requireContext(), SettingsActivity::class.java)
             startActivity(intent)
