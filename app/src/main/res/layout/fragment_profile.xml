@@ -98,7 +98,7 @@
                     android:id="@+id/btnHelp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Help & Support"
+                    android:text="Help and Support"
                     android:layout_marginBottom="8dp" />
 
                 <Button
