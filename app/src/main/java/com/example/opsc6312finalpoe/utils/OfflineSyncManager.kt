@@ -10,6 +10,7 @@ import com.example.opsc6312finalpoe.models.Property
 import com.example.opsc6312finalpoe.repository.PropertyRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class OfflineSyncManager(private val context: Context) {
@@ -48,7 +49,7 @@ class OfflineSyncManager(private val context: Context) {
 
     suspend fun getPropertiesOffline(): List<Property> {
         return try {
-            val propertyEntities = appDatabase.propertyDao().getAllProperties()
+            val propertyEntities = appDatabase.propertyDao().getAllPropertiesDirect()
             propertyEntities.map { it.toProperty() }
         } catch (e: Exception) {
             emptyList()
@@ -57,7 +58,8 @@ class OfflineSyncManager(private val context: Context) {
 
     suspend fun searchPropertiesOffline(query: String): List<Property> {
         return try {
-            val propertyEntities = appDatabase.propertyDao().searchProperties(query)
+            val propertyEntitiesFlow = appDatabase.propertyDao().searchProperties(query)
+            val propertyEntities = propertyEntitiesFlow.first()
             propertyEntities.map { it.toProperty() }
         } catch (e: Exception) {
             emptyList()
