@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.opsc6312finalpoe.adapters.PropertyAdapter
 import com.example.opsc6312finalpoe.databinding.FragmentPropertyListBinding
 import com.example.opsc6312finalpoe.repository.PropertyRepository
 import com.example.opsc6312finalpoe.repository.PropertyViewModel
@@ -21,6 +22,7 @@ class PropertyListFragment : Fragment() {
     private val propertyViewModel: PropertyViewModel by viewModels {
         PropertyViewModelFactory(PropertyRepository(requireContext()))
     }
+    private lateinit var propertyAdapter: PropertyAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,25 +37,30 @@ class PropertyListFragment : Fragment() {
 
         setupRecyclerView()
         setupObservers()
+        setupSearch()
         loadProperties()
     }
 
     private fun setupRecyclerView() {
-        binding.recyclerViewProperties.layoutManager = LinearLayoutManager(requireContext())
-        // Set adapter here later
+        propertyAdapter = PropertyAdapter(emptyList()) { property ->
+            // Handle property click - navigate to property details
+            // (activity as? MainActivity)?.replaceFragment(PropertyDetailsFragment.newInstance(property))
+        }
+
+        binding.recyclerViewProperties.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = propertyAdapter
+        }
     }
 
     private fun setupObservers() {
-        // Observe properties using StateFlow
         viewLifecycleOwner.lifecycleScope.launch {
             propertyViewModel.properties.collect { properties ->
-                // Update recycler view adapter
+                propertyAdapter.updateProperties(properties)
                 binding.tvEmpty.visibility = if (properties.isEmpty()) View.VISIBLE else View.GONE
-                // TODO: Update adapter with properties
             }
         }
 
-        // Observe loading state using StateFlow
         viewLifecycleOwner.lifecycleScope.launch {
             propertyViewModel.loadingState.collect { state ->
                 when (state) {
@@ -65,7 +72,7 @@ class PropertyListFragment : Fragment() {
                     }
                     is PropertyViewModel.LoadingState.Error -> {
                         binding.progressBar.visibility = View.GONE
-                        // Show error message (you can add a Snackbar or Toast here)
+                        // Show error message
                     }
                     else -> {}
                 }
@@ -73,12 +80,31 @@ class PropertyListFragment : Fragment() {
         }
     }
 
+    private fun setupSearch() {
+        binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    if (it.length >= 2) {
+                        propertyViewModel.searchProperties(location = it)
+                    } else if (it.isEmpty()) {
+                        loadProperties()
+                    }
+                }
+                return true
+            }
+        })
+    }
+
     private fun loadProperties() {
         propertyViewModel.loadProperties()
     }
 }
 
-// Add this Factory class
+// Factory class remains the same
 class PropertyViewModelFactory(
     private val propertyRepository: PropertyRepository
 ) : ViewModelProvider.Factory {

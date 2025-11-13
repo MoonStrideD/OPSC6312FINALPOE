@@ -41,7 +41,7 @@ class ProfileFragment : Fragment() {
                 binding.tvUserName.text = getString(R.string.full_name, it.firstName, it.lastName)
                 binding.tvUserEmail.text = it.email
                 binding.tvUserPhone.text = it.phoneNumber
-                binding.tvUserRole.text = it.role
+                binding.tvUserRole.text = "Role: ${it.role.capitalize()}"
             }
         }
     }
@@ -54,11 +54,21 @@ class ProfileFragment : Fragment() {
 
         binding.btnEditProfile.setOnClickListener {
             // Navigate to edit profile
+            (activity as? MainActivity)?.replaceFragment(EditProfileFragment())
         }
 
         binding.btnSettings.setOnClickListener {
             val intent = Intent(requireContext(), SettingsActivity::class.java)
             startActivity(intent)
         }
+
+        binding.btnHelp.setOnClickListener {
+            // Navigate to help and support
+            (activity as? MainActivity)?.replaceFragment(HelpSupportFragment())
+        }
+
+        // Remove change language and notification buttons as requested
+        binding.btnLanguage.visibility = View.GONE
+        binding.btnNotifications.visibility = View.GONE
     }
 }
