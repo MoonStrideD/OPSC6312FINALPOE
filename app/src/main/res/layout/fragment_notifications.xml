@@ -25,14 +25,14 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_notifications"
-                android:tint="@android:color/white"
                 android:layout_marginEnd="12dp"
-                android:contentDescription="@string/notifications" />
+                android:contentDescription="@string/notifications"
+                app:tint="@android:color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Notifications"
+                android:text="@string/notifications"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white" />
@@ -46,7 +46,7 @@
                 android:id="@+id/btnClearAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clear All"
+                android:text="@string/clear_all"
                 android:textColor="@android:color/white"
                 android:backgroundTint="@android:color/transparent"
                 android:textAllCaps="false" />
@@ -70,14 +70,15 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewNotifications"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:contentDescription="@string/notifications_list" />
 
         <TextView
             android:id="@+id/tvEmpty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="No notifications"
+            android:text="@string/no_notifications"
             android:textSize="16sp"
             android:textColor="#666"
             android:visibility="visible" />
