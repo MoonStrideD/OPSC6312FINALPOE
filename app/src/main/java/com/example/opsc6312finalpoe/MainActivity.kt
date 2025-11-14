@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         // Check authentication and load user data
         checkAuthStatusAndLoadUser()
 
-        setupBottomNavigation()
         setupOfflineSync()
     }
 
@@ -50,6 +49,7 @@ class MainActivity : AppCompatActivity() {
                 val user = authRepository.getCurrentUserData()
                 userRole = user?.role ?: "tenant"
                 setupRoleBasedUI()
+                setupBottomNavigation()
             }
         }
     }
@@ -90,10 +90,6 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(ChatFragment())
                     true
                 }
-                R.id.navigation_notifications -> {
-                    replaceFragment(NotificationsFragment())
-                    true
-                }
                 R.id.navigation_profile -> {
                     replaceFragment(ProfileFragment())
                     true
@@ -102,16 +98,29 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Set default fragment based on role
-        when (userRole) {
-            "landlord" -> replaceFragment(LandlordDashboardFragment())
-            else -> replaceFragment(TenantDashboardFragment())
-        }
+        // Set default selection
+        binding.bottomNavigation.selectedItemId = R.id.navigation_dashboard
     }
+
 
     fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
+            .commit()
+    }
+
+    private fun testNotifications() {
+        val fragment = NotificationsFragment()
+
+        // Test different notification types
+        fragment.testRentReminder()
+        fragment.testNewPropertyNotification()
+        fragment.testCustomNotification("Test", "This is a custom test notification")
+
+        // Navigate to notifications fragment
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
             .commit()
     }
 

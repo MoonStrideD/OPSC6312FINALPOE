@@ -1,20 +1,41 @@
 package com.example.opsc6312finalpoe.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Property(
-    val propertyId: String = "",
-    val landlordId: String = "",
-    val title: String = "",
-    val description: String = "",
-    val price: Double = 0.0,
-    val propertyType: String = "", // house, apartment, room, studio
-    val bedrooms: Int = 0,
-    val bathrooms: Int = 0,
-    val location: String = "",
-    val latitude: Double = 0.0,
-    val longitude: Double = 0.0,
-    val amenities: List<String> = emptyList(),
-    val photos: List<String> = emptyList(),
-    val status: String = "available", // available, rented, pending
-    val createdAt: Long = System.currentTimeMillis(),
-    val updatedAt: Long = System.currentTimeMillis()
-)
+    var propertyId: String = "",
+    var landlordId: String = "",
+    var title: String = "",
+    var description: String = "",
+    var price: Double = 0.0,
+    var propertyType: String = "",
+    var bedrooms: Int = 0,
+    var bathrooms: Int = 0,
+    var location: String = "",
+    var latitude: Double = 0.0,
+    var longitude: Double = 0.0,
+    var amenities: List<String> = emptyList(),
+    var photos: List<String> = emptyList(),
+    var status: String = "available",
+    var createdAt: Long = System.currentTimeMillis(),
+    var updatedAt: Long = System.currentTimeMillis()
+) : Parcelable {
+
+    fun getFormattedPrice(): String {
+        return "R${"%.0f".format(price)}"
+    }
+
+    fun getBedroomText(): String {
+        return if (bedrooms == 1) "1 bedroom" else "$bedrooms bedrooms"
+    }
+
+    fun getBathroomText(): String {
+        return if (bathrooms == 1) "1 bathroom" else "$bathrooms bathrooms"
+    }
+
+    fun getMainPhoto(): String {
+        return photos.firstOrNull() ?: ""
+    }
+}

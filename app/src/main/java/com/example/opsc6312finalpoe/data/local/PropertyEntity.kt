@@ -18,33 +18,12 @@ data class PropertyEntity(
     val location: String,
     val latitude: Double,
     val longitude: Double,
-    val amenities: String, // JSON string
-    val photos: String, // JSON string
+    val amenities: String, // Store as JSON string
+    val photos: String, // Store as JSON string
     val status: String,
     val createdAt: Long,
     val updatedAt: Long
 ) {
-    fun toProperty(): Property {
-        return Property(
-            propertyId = propertyId,
-            landlordId = landlordId,
-            title = title,
-            description = description,
-            price = price,
-            propertyType = propertyType,
-            bedrooms = bedrooms,
-            bathrooms = bathrooms,
-            location = location,
-            latitude = latitude,
-            longitude = longitude,
-            amenities = emptyList(), // You'd need to parse JSON
-            photos = emptyList(), // You'd need to parse JSON
-            status = status,
-            createdAt = createdAt,
-            updatedAt = updatedAt
-        )
-    }
-
     companion object {
         fun fromProperty(property: Property): PropertyEntity {
             return PropertyEntity(
@@ -66,5 +45,26 @@ data class PropertyEntity(
                 updatedAt = property.updatedAt
             )
         }
+    }
+
+    fun toProperty(): Property {
+        return Property(
+            propertyId = propertyId,
+            landlordId = landlordId,
+            title = title,
+            description = description,
+            price = price,
+            propertyType = propertyType,
+            bedrooms = bedrooms,
+            bathrooms = bathrooms,
+            location = location,
+            latitude = latitude,
+            longitude = longitude,
+            amenities = if (amenities.isNotEmpty()) amenities.split(",") else emptyList(),
+            photos = if (photos.isNotEmpty()) photos.split(",") else emptyList(),
+            status = status,
+            createdAt = createdAt,
+            updatedAt = updatedAt
+        )
     }
 }

@@ -5,18 +5,15 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
 import com.example.opsc6312finalpoe.data.local.AppDatabase
-import com.example.opsc6312finalpoe.data.local.PropertyEntity
 import com.example.opsc6312finalpoe.models.Property
 import com.example.opsc6312finalpoe.repository.PropertyRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class OfflineSyncManager(private val context: Context) {
     private val propertyRepository = PropertyRepository(context)
     private val appDatabase = AppDatabase.getInstance(context)
-    private val sharedPreferencesHelper = SharedPreferencesHelper(context)
 
     fun isOnline(): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -38,7 +35,9 @@ class OfflineSyncManager(private val context: Context) {
             val onlineProperties = propertyRepository.getAllProperties()
 
             // Save to local database
-            val propertyEntities = onlineProperties.map { PropertyEntity.fromProperty(it) }
+            val propertyEntities = onlineProperties.map { property ->
+                com.example.opsc6312finalpoe.data.local.PropertyEntity.fromProperty(property)
+            }
             appDatabase.propertyDao().insertAllProperties(propertyEntities)
 
             Log.d("OfflineSync", "Synced ${onlineProperties.size} properties to local database")
@@ -49,8 +48,10 @@ class OfflineSyncManager(private val context: Context) {
 
     suspend fun getPropertiesOffline(): List<Property> {
         return try {
-            val propertyEntities = appDatabase.propertyDao().getAllPropertiesDirect()
-            propertyEntities.map { it.toProperty() }
+            val propertyEntities = appDatabase.propertyDao().getAllProperties()
+            propertyEntities.map { propertyEntity ->
+                propertyEntity.toProperty()
+            }
         } catch (e: Exception) {
             emptyList()
         }
@@ -58,9 +59,17 @@ class OfflineSyncManager(private val context: Context) {
 
     suspend fun searchPropertiesOffline(query: String): List<Property> {
         return try {
-            val propertyEntitiesFlow = appDatabase.propertyDao().searchProperties(query)
-            val propertyEntities = propertyEntitiesFlow.first()
-            propertyEntities.map { it.toProperty() }
+            val propertyEntities = appDatabase.propertyDao().getAllProperties()
+            propertyEntities
+                .filter { propertyEntity ->
+                    propertyEntity.title.contains(query, ignoreCase = true) ||
+                            propertyEntity.description.contains(query, ignoreCase = true) ||
+                            propertyEntity.location.contains(query, ignoreCase = true) ||
+                            propertyEntity.propertyType.contains(query, ignoreCase = true)
+                }
+                .map { propertyEntity ->
+                    propertyEntity.toProperty()
+                }
         } catch (e: Exception) {
             emptyList()
         }

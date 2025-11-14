@@ -29,6 +29,7 @@
     <string name="bedrooms">%d Slaapkamers</string>
     <string name="price_per_month">R %.0f/maand</string>
 
+
     <!-- Profile -->
     <string name="edit_profile">Wysig Profiel</string>
     <string name="change_language">Verander Taal</string>

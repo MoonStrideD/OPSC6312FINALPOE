@@ -8,12 +8,14 @@ import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.OAuthProvider
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.OAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.tasks.await
 import com.example.opsc6312finalpoe.models.User
 import com.example.opsc6312finalpoe.utils.MicrosoftAuthHelper
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AuthRepository(private val activity: Activity) {
@@ -35,12 +37,11 @@ class AuthRepository(private val activity: Activity) {
         .build()
 
     init {
-        // Initialize Microsoft auth
         initializeMicrosoftAuth()
     }
 
     private fun initializeMicrosoftAuth() {
-        kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             val result = microsoftAuthHelper.initialize()
             if (result.isSuccess) {
                 Log.d("AuthRepository", "Microsoft auth initialized successfully")
@@ -68,7 +69,6 @@ class AuthRepository(private val activity: Activity) {
         }
     }
 
-    // Add this to your AuthRepository.kt
     suspend fun updateUserProfile(userId: String, firstName: String, lastName: String, phoneNumber: String): Result<Boolean> {
         return try {
             val updates = mapOf(
@@ -168,7 +168,6 @@ class AuthRepository(private val activity: Activity) {
     }
 
     // MICROSOFT AUTHENTICATION
-    // MICROSOFT AUTHENTICATION - SIMPLIFIED VERSION
     suspend fun loginWithMicrosoft(): Result<Boolean> {
         return try {
             val provider = OAuthProvider.newBuilder("microsoft.com").build()
@@ -215,7 +214,6 @@ class AuthRepository(private val activity: Activity) {
     fun logout() {
         auth.signOut()
         oneTapClient.signOut()
-        // Microsoft sign-out will be handled when we implement it fully
     }
 
     suspend fun isUserLoggedIn(): Boolean {

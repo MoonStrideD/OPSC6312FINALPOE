@@ -6,10 +6,15 @@ import android.content.Context
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.example.opsc6312finalpoe.R
+import com.example.opsc6312finalpoe.repository.MessageRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 object NotificationHelper {
     private const val CHANNEL_ID = "breezynest_channel"
     private const val CHANNEL_NAME = "BreezyNest Notifications"
+    private val messageRepository = MessageRepository()
 
     fun createNotificationChannel(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -45,15 +50,80 @@ object NotificationHelper {
         notificationManager.notify(notificationId, notification)
     }
 
-    fun showRentReminder(context: Context, propertyName: String, daysUntilDue: Int) {
-        val title = context.getString(R.string.rent_reminder)
-        val message = context.getString(R.string.rent_due_soon, propertyName, daysUntilDue)
+    // Send rent reminder notification AND message to tenants
+    fun sendRentReminderToTenants(
+        context: Context,
+        senderId: String,
+        senderName: String,
+        propertyName: String,
+        daysUntilDue: Int,
+        propertyId: String = ""
+    ) {
+        val title = "Rent Reminder"
+        val message = "Your rent for $propertyName is due in $daysUntilDue days"
+
+        // Show local notification
         showNotification(context, title, message)
+
+        // Send message to all tenants
+        CoroutineScope(Dispatchers.IO).launch {
+            messageRepository.sendBroadcastToTenants(
+                senderId = senderId,
+                senderName = senderName,
+                title = title,
+                content = message,
+                propertyId = propertyId
+            )
+        }
     }
 
-    fun showNewPropertyNotification(context: Context, location: String) {
-        val title = context.getString(R.string.new_property_available)
-        val message = context.getString(R.string.new_property_in_location, location)
+    // Send new property notification AND message to tenants
+    fun sendNewPropertyToTenants(
+        context: Context,
+        senderId: String,
+        senderName: String,
+        location: String,
+        propertyId: String = ""
+    ) {
+        val title = "New Property Available"
+        val message = "A new property just listed in $location area"
+
+        // Show local notification
         showNotification(context, title, message)
+
+        // Send message to all tenants
+        CoroutineScope(Dispatchers.IO).launch {
+            messageRepository.sendBroadcastToTenants(
+                senderId = senderId,
+                senderName = senderName,
+                title = title,
+                content = message,
+                propertyId = propertyId
+            )
+        }
+    }
+
+    // Send custom broadcast message to tenants
+    fun sendCustomMessageToTenants(
+        context: Context,
+        senderId: String,
+        senderName: String,
+        title: String,
+        message: String,
+        propertyId: String = ""
+    ) {
+        // Show local notification
+        showNotification(context, title, message)
+
+        // Send message to all tenants
+        CoroutineScope(Dispatchers.IO).launch {
+            messageRepository.sendBroadcastToTenants(
+                senderId = senderId,
+                senderName = senderName,
+                title = title,
+                content = message,
+                propertyId = propertyId
+            )
+        }
     }
 }

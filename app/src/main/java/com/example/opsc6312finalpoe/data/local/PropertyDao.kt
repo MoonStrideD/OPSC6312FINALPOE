@@ -1,15 +1,12 @@
 package com.example.opsc6312finalpoe.data.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.OnConflictStrategy
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PropertyDao {
-    @Query("SELECT * FROM properties")
-    fun getAllProperties(): Flow<List<PropertyEntity>>
+    @Query("SELECT * FROM properties ORDER BY createdAt DESC")
+    suspend fun getAllProperties(): List<PropertyEntity>
 
     @Query("SELECT * FROM properties WHERE propertyId = :propertyId")
     suspend fun getPropertyById(propertyId: String): PropertyEntity?
@@ -20,13 +17,19 @@ interface PropertyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllProperties(properties: List<PropertyEntity>)
 
+    @Update
+    suspend fun updateProperty(property: PropertyEntity)
+
+    @Query("DELETE FROM properties WHERE propertyId = :propertyId")
+    suspend fun deleteProperty(propertyId: String)
+
     @Query("DELETE FROM properties")
     suspend fun clearAllProperties()
 
-    @Query("SELECT * FROM properties WHERE location LIKE '%' || :query || '%' OR title LIKE '%' || :query || '%'")
-    fun searchProperties(query: String): Flow<List<PropertyEntity>>
+    // Flow versions for real-time updates (optional)
+    @Query("SELECT * FROM properties ORDER BY createdAt DESC")
+    fun getAllPropertiesFlow(): Flow<List<PropertyEntity>>
 
-    // Add this method to get properties without Flow for direct access
-    @Query("SELECT * FROM properties")
-    suspend fun getAllPropertiesDirect(): List<PropertyEntity>
+    @Query("SELECT * FROM properties WHERE propertyId = :propertyId")
+    fun getPropertyByIdFlow(propertyId: String): Flow<PropertyEntity?>
 }

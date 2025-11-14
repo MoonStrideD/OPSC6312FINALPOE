@@ -79,8 +79,9 @@
         android:id="@+id/tvRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:minHeight="48dp"
         android:text="Don't have an account? Register here"
-        android:textColor="@color/primary_green"
-        android:clickable="true" />
+        android:textColor="@color/primary_green" />
 
 </LinearLayout>

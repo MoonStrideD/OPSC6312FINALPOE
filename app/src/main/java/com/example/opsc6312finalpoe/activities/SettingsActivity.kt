@@ -15,6 +15,10 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Apply theme before setting content view
+        applyThemeFromPreferences()
+
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -24,10 +28,20 @@ class SettingsActivity : AppCompatActivity() {
         setupClickListeners()
     }
 
+    private fun applyThemeFromPreferences() {
+        val isDarkMode = SharedPreferencesHelper(this).isDarkMode()
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+    }
+
     private fun setupUI() {
-        // Set current theme
+        // Set current theme based on actual system setting, not just switch state
         val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        binding.switchDarkMode.isChecked = currentNightMode == Configuration.UI_MODE_NIGHT_YES
+        val isDarkModeEnabled = currentNightMode == Configuration.UI_MODE_NIGHT_YES
+        binding.switchDarkMode.isChecked = isDarkModeEnabled
 
         // Set current language
         val currentLanguage = sharedPreferencesHelper.getLanguage()
@@ -46,12 +60,16 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun setupClickListeners() {
         binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+            // Apply theme change
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
             sharedPreferencesHelper.setDarkMode(isChecked)
+
+            // No need to recreate activity - let the system handle it
+            // The activity will automatically recreate if needed
         }
 
         binding.radioGroupLanguage.setOnCheckedChangeListener { _, checkedId ->
@@ -77,10 +95,7 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun changeLanguage(languageCode: String) {
         sharedPreferencesHelper.saveLanguage(languageCode)
-        // apply locale change; no need to keep returned Context here
         LanguageHelper.setAppLocale(this, languageCode)
-
-        // Restart activity to apply language changes
-        recreate()
+        recreate() // Only recreate for language changes
     }
 }
