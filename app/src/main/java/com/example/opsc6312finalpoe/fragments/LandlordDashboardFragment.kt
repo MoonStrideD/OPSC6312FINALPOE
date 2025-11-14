@@ -71,26 +71,44 @@ class LandlordDashboardFragment : Fragment() {
     // Test all notification types at once
     private fun testAllNotifications() {
         try {
+            val currentUserId = "landlord_123" // Replace with actual landlord ID
+            val landlordName = "Property Manager" // Replace with actual landlord name
+
             NotificationHelper.createNotificationChannel(requireContext())
 
-            // Test 1: Basic notification
-            NotificationHelper.showNotification(
+            // Test 1: Basic notification with message
+            NotificationHelper.sendCustomMessageToTenants(
                 requireContext(),
+                currentUserId,
+                landlordName,
                 "BreezyNest Test ✅",
-                "Basic notification system is working perfectly!"
+                "Basic notification system is working perfectly! You'll see this message in your messages screen."
             )
 
-            // Test 2: Rent reminder
-            NotificationHelper.showRentReminder(requireContext(), "Luxury Apartment", 5)
+            // Test 2: Rent reminder with message - USE CORRECT METHOD NAME
+            NotificationHelper.sendRentReminderToTenants(
+                requireContext(),
+                currentUserId,
+                landlordName,
+                "Luxury Apartment",
+                5,
+                "property_2" // Example property ID
+            )
 
-            // Test 3: New property
-            NotificationHelper.showNewPropertyNotification(requireContext(), "Sandton Area")
+            // Test 3: New property with message - USE CORRECT METHOD NAME
+            NotificationHelper.sendNewPropertyToTenants(
+                requireContext(),
+                currentUserId,
+                landlordName,
+                "Sandton Area",
+                "property_1" // Example property ID
+            )
 
             // Show success message
-            Snackbar.make(landlordBinding.root, "🎉 3 test notifications sent! Swipe down from top to see them.", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(landlordBinding.root, "🎉 3 test notifications sent! Tenants will see these as messages.", Snackbar.LENGTH_LONG).show()
 
             // Log for debugging
-            Log.d("LandlordDashboard", "All test notifications sent successfully")
+            Log.d("LandlordDashboard", "All test notifications and messages sent successfully")
 
         } catch (e: Exception) {
             Log.e("LandlordDashboard", "Error testing notifications", e)
@@ -98,22 +116,41 @@ class LandlordDashboardFragment : Fragment() {
         }
     }
 
-    // Test rent reminder specifically
+    // Test rent reminder specifically - USE CORRECT METHOD NAME
     private fun testRentReminder() {
         try {
-            NotificationHelper.showRentReminder(requireContext(), "Modern Apartment", 3)
-            Snackbar.make(landlordBinding.root, "💰 Rent reminder notification sent!", Snackbar.LENGTH_SHORT).show()
+            val currentUserId = "landlord_123"
+            val landlordName = "Property Manager"
+
+            NotificationHelper.sendRentReminderToTenants(
+                requireContext(),
+                currentUserId,
+                landlordName,
+                "Modern Apartment",
+                3,
+                "property_3"
+            )
+            Snackbar.make(landlordBinding.root, "💰 Rent reminder notification and message sent!", Snackbar.LENGTH_SHORT).show()
             Log.d("LandlordDashboard", "Rent reminder test completed")
         } catch (e: Exception) {
             Log.e("LandlordDashboard", "Error testing rent reminder", e)
         }
     }
 
-    // Test new property notification
+    // Test new property notification - USE CORRECT METHOD NAME
     private fun testNewPropertyNotification() {
         try {
-            NotificationHelper.showNewPropertyNotification(requireContext(), "Cape Town")
-            Snackbar.make(landlordBinding.root, "🏠 New property notification sent!", Snackbar.LENGTH_SHORT).show()
+            val currentUserId = "landlord_123"
+            val landlordName = "Property Manager"
+
+            NotificationHelper.sendNewPropertyToTenants(
+                requireContext(),
+                currentUserId,
+                landlordName,
+                "Cape Town",
+                "property_4"
+            )
+            Snackbar.make(landlordBinding.root, "🏠 New property notification and message sent!", Snackbar.LENGTH_SHORT).show()
             Log.d("LandlordDashboard", "New property test completed")
         } catch (e: Exception) {
             Log.e("LandlordDashboard", "Error testing new property notification", e)
@@ -123,12 +160,17 @@ class LandlordDashboardFragment : Fragment() {
     // Quick single notification test
     private fun quickNotificationTest() {
         try {
-            NotificationHelper.showNotification(
+            val currentUserId = "landlord_123"
+            val landlordName = "Property Manager"
+
+            NotificationHelper.sendCustomMessageToTenants(
                 requireContext(),
+                currentUserId,
+                landlordName,
                 "Quick Test 🚀",
-                "Your notification system is working great!"
+                "Your notification and messaging system is working great! This message will appear in the messages screen."
             )
-            Snackbar.make(landlordBinding.root, "🔔 Quick test notification sent!", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(landlordBinding.root, "🔔 Quick test notification and message sent!", Snackbar.LENGTH_SHORT).show()
             Log.d("LandlordDashboard", "Quick notification test completed")
         } catch (e: Exception) {
             Log.e("LandlordDashboard", "Error in quick notification test", e)
@@ -138,7 +180,16 @@ class LandlordDashboardFragment : Fragment() {
     // Simple method to test one specific notification
     private fun testSingleNotification(title: String, message: String) {
         try {
-            NotificationHelper.showNotification(requireContext(), title, message)
+            val currentUserId = "landlord_123"
+            val landlordName = "Property Manager"
+
+            NotificationHelper.sendCustomMessageToTenants(
+                requireContext(),
+                currentUserId,
+                landlordName,
+                title,
+                message
+            )
             Snackbar.make(landlordBinding.root, "Notification sent: $title", Snackbar.LENGTH_SHORT).show()
         } catch (e: Exception) {
             Log.e("LandlordDashboard", "Error sending single notification", e)

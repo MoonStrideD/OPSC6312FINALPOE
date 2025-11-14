@@ -102,25 +102,9 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.selectedItemId = R.id.navigation_dashboard
     }
 
-
     fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
-            .commit()
-    }
-
-    private fun testNotifications() {
-        val fragment = NotificationsFragment()
-
-        // Test different notification types
-        fragment.testRentReminder()
-        fragment.testNewPropertyNotification()
-        fragment.testCustomNotification("Test", "This is a custom test notification")
-
-        // Navigate to notifications fragment
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .addToBackStack(null)
             .commit()
     }
 
